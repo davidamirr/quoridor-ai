@@ -91,5 +91,9 @@ python main.py
 [Link to Demo Video Placeholder]
 
 ## 👥 Contributors
-
-- Your Name - *Lead Developer & AI Architect*
+- David Amir
+- Manuel Gamal
+- Mariam Emad
+- George Wanis
+- Maria Samy
+- George Ibrahim
