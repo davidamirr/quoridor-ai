@@ -1,14 +1,14 @@
 from game.game_state import GameState, Move
-from .minimax import minimax
+from .minimax import iterative_deepening
 
 def get_hard_ai_move(state: GameState) -> Move:
-    """Uses Minimax with Alpha-Beta pruning to find the best move."""
-    # Depth 2 ensures responsiveness while providing decent strategy
-    DEPTH = 2
-    _, best_move = minimax(state, depth=DEPTH, alpha=float('-inf'), beta=float('inf'), maximizing_player=state.current_turn)
+    """Uses Iterative Deepening Minimax with Alpha-Beta pruning to find the best move."""
+    # 3.0 seconds is a good balance for a "Hard" AI in a typical project
+    TIME_LIMIT = 3.0
+    best_move = iterative_deepening(state, time_limit=TIME_LIMIT)
     
     if best_move is None:
-        # Fallback to medium AI if something goes wrong
+        # Fallback to medium AI if something goes wrong (e.g. timeout on depth 1)
         from .medium_ai import get_medium_ai_move
         return get_medium_ai_move(state)
         

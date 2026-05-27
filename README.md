@@ -10,7 +10,7 @@ A complete, production-quality implementation of the classic board game **Quorid
 - **Advanced AI Opponents:**
   - **Easy:** Makes random, valid moves with occasional wall placements.
   - **Medium:** Heuristic-driven logic that greedily follows the shortest path and blocks the player when threatened.
-  - **Hard:** Advanced Minimax algorithm with Alpha-Beta pruning, utilizing custom board evaluation heuristics.
+  - **Hard:** Sophisticated AI using **Iterative Deepening Minimax** with **Alpha-Beta Pruning**. It utilizes a time-limited search (default 3s) and an advanced evaluation heuristic that balances goal proximity, wall conservation, and opponent disruption.
 - **Robust Pathfinding:** BFS-based pathfinding ensures walls can never completely box in any player.
 - **Full Undo/Redo Stack:** Mistakes happen! Use the UI buttons or standard keyboard shortcuts (`Ctrl+Z` / `Ctrl+Y`) to traverse the game state history seamlessly.
 - **Modern GUI:** Clean, visually appealing Pygame interface with valid move highlighting, wall placement preview colors, and turn indicators.
@@ -32,9 +32,9 @@ A complete, production-quality implementation of the classic board game **Quorid
 ├── ai/                     # Artificial Intelligence logic
 │   ├── easy_ai.py          # Random valid moves
 │   ├── medium_ai.py        # Shortest path heuristics
-│   ├── hard_ai.py          # Minimax Alpha-Beta entry point
-│   ├── heuristics.py       # Board evaluation functions
-│   ├── minimax.py          # Minimax algorithm implementation
+│   ├── hard_ai.py          # Iterative Deepening entry point
+│   ├── heuristics.py       # Weighted board evaluation functions
+│   ├── minimax.py          # Minimax algorithm with Move Ordering
 │   └── pathfinding.py      # BFS graph traversal
 ├── ui/                     # Presentation layer
 │   ├── button.py           # Pygame interactive button component
@@ -81,7 +81,9 @@ python main.py
 ## 🧠 AI & Architecture Highlights
 
 - **State Management:** The game operates on a centralized `GameState` object. Rather than mutating a single board and attempting to reverse commands, every move creates a deep copy of the state, ensuring that the Undo/Redo system (`history_manager.py`) is completely bug-free and mathematically sound.
-- **Minimax with Alpha-Beta Pruning:** The Hard AI evaluates future board states by simulating pawn moves and a curated, highly heuristic subset of wall placements (walls immediately around the opponent). This dramatically cuts down the branching factor, allowing depth-based search to run fast in Python.
+- **Iterative Deepening Minimax:** The Hard AI uses a time-limited iterative search. It explores increasingly deeper levels of the game tree until the time limit (3 seconds) is reached, ensuring it always makes the most informed move possible within its budget.
+- **Alpha-Beta Pruning & Move Ordering:** To optimize search efficiency, the engine uses Alpha-Beta pruning combined with move ordering (prioritizing pawn moves). This allows the AI to skip evaluating millions of disadvantageous branches.
+- **Advanced Heuristics:** The evaluation function considers path length differences, wall counts, and strategic positioning to evaluate board states beyond simple greedy movements.
 - **Pathfinding:** Before any wall is placed, the board uses a Breadth-First Search (BFS) to guarantee that a path still exists for all players.
 
 ## 🎥 Demo Video
