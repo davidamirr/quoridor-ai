@@ -88,7 +88,7 @@ python main.py
 
 ## 🎥 Demo Video
 
-[Link to Demo Video Placeholder]
+https://drive.google.com/drive/folders/1nYU3eqwbxcQQmac2rx8zOhbes0KwEReY?usp=sharing
 
 ## 👥 Contributors
 - David Amir Mahrous 2300228
