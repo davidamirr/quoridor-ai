@@ -91,9 +91,10 @@ python main.py
 [Link to Demo Video Placeholder]
 
 ## 👥 Contributors
-- David Amir
-- Manuel Gamal
-- Mariam Emad
-- George Wanis
-- Maria Samy
-- George Ibrahim
+- David Amir Mahrous 2300228
+- Manuel Gamal Aziz 2300526
+- Mariam Emad Ibrahim 2300450
+- George Wanis Ayed 2300280
+- Maria Samy Ibrahim 2300812
+- George Ibrahim Abdo 2300285
+
